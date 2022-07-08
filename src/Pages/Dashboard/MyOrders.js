@@ -25,7 +25,7 @@ const MyOrders = () => {
 const handleDelete = id =>{
     const proceed = window.confirm('Are you sure?');
     if(proceed){
-        const url = `https://sleepy-garden-61288.herokuapp.com/order/${id}`;
+        const url = `http://localhost:5000/order/${id}`;
         fetch(url, {
             method: 'DELETE'
         })

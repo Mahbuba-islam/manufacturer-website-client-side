@@ -10,7 +10,7 @@ const MyReviews = () => {
     
     const onSubmit = data => {
         console.log(data);
-        const url = 'https://sleepy-garden-61288.herokuapp.com/review';
+        const url = 'http://localhost:5000/review';
         fetch(url, {
             method: 'POST',
             headers: {

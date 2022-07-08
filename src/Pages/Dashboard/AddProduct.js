@@ -6,7 +6,7 @@ const AddProduct = () => {
     
     const onSubmit = data => {
         console.log(data);
-        const url = 'https://sleepy-garden-61288.herokuapp.com/part';
+        const url = 'http://localhost:5000/part';
         fetch(url, {
             method: 'POST',
             headers: {

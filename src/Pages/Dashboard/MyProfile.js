@@ -13,7 +13,7 @@ const MyProfile = () => {
     const handleSubmit = event =>{
         event.preventDefault();
         
-        fetch(`https://sleepy-garden-61288.herokuapp.com/user/${email}`, {
+        fetch(`http://localhost:5000/user/${email}`, {
             method: 'PUT',
             headers:{
               'content-type': 'application/json'

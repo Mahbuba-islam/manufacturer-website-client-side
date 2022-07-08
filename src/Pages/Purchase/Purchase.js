@@ -23,7 +23,7 @@ const Purchase = () => {
             price:event.target.price.value
 
         }
-        fetch('https://sleepy-garden-61288.herokuapp.com/orders', {
+        fetch('http://localhost:5000/orders', {
           method: 'post',
           headers:{
             'content-type': 'application/json'
