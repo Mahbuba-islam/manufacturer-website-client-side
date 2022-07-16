@@ -50,6 +50,7 @@ const Purchase = () => {
       phone:event.target.phone.value,
       address:event.target.address.value,
       minimumQuantity:purchase.minimumQuantity,
+     availavailQuantity: purchase.availavailQuantity,
       price:purchase.price
   }
   fetch('http://localhost:5000/orders', {
@@ -150,6 +151,7 @@ const decreaseQuantity = () =>{
           <input type="text" placeholder='ADDRESS' name='address'  class="input w-full max-w-xs " />
          <input type="number" placeholder='PHONE NUMBER' name='phone' class="input w-full max-w-xs " />
           <input type="text" placeholder="price"  value={purchase.price} name='quantity' class="input w-full max-w-xs" />
+          <input type="text" placeholder="price"  value={purchase.availavailQuantity} name='quantity' class="input w-full max-w-xs" />
           <input type="submit" value='complete the order' class="btn btn-secondary"/>
       </form>
     
