@@ -17,7 +17,7 @@ const Login = () => {
     ] = useSignInWithEmailAndPassword(auth);
 
     const [token] = useToken(user || gUser);
-
+    console.log(token)
     let signInError;
     const navigate = useNavigate();
     const location = useLocation();

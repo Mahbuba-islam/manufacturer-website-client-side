@@ -4,7 +4,7 @@ import BannerPic from '../../../assets/images/pexels-sergei-starostin-6636476 (1
 
 const Banner = () => {
     return (
-        <div className="hero h-screen lg:h-[60vh] bg-accent relative z-10 mt-16 px-7 rounded-lg py-11'">
+        <div className="hero h-screen lg:h-[60vh]  relative z-10 mt-16 px-7 rounded-lg py-11'">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <img src={BannerPic}  alt='banner' />
                 <div>

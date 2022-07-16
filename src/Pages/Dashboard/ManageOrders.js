@@ -1,26 +1,27 @@
-
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link, Navigate } from 'react-router-dom';
+
+import { Link} from 'react-router-dom';
 import { toast } from 'react-toastify';
-import auth from '../../firebase.init';
+ import auth from '../../firebase.init';
+
 // import { useNavigate } from 'react-router-dom';
 // import { signOut } from 'firebase/auth';
 
 
-const MyOrders = () => {
-    const [user] = useAuthState(auth);
-    const email = user.email
+const ManageOrders = () => {
+ const [user] = useAuthState(auth);
+const customerEmail = user.email
+   
   const [orders, setOrders] = useState([]);
     
     
     useEffect(() => {
-        if (user) {
-            fetch(`http://localhost:5000/myOrders?customerEmail=${email}`)
+        fetch('http://localhost:5000/orders')
             .then(res => res.json())
             .then(data => setOrders(data));
-    }
-}, [user])
+    
+}, [])
 
 
 
@@ -28,7 +29,7 @@ const handleDelete = id =>{
     const proceed = toast.warn(<div><h4>Are You Sure! </h4> <strong> You really want to remove your product?</strong>
     </div>);
       if(proceed){
-          const url = `http://localhost:5000/myOrders/${id}`;
+          const url = `http://localhost:5000/orders/${id}`;
           fetch(url, {
               method: 'DELETE'
           })
@@ -64,7 +65,7 @@ const handleDelete = id =>{
                         {
                             orders.map((order, index) =><tr>
                                 <th>{index + 1}</th>
-                                <td>{order.customerName}</td>
+                                <td>name:{order.customerName}</td>
                                 <td>{order.customerEmail}</td>
                                 <td>{order.phone}</td>
                                 <td>{order.address}</td>
@@ -90,7 +91,7 @@ const handleDelete = id =>{
     );
 };
 
-export default MyOrders;
+export default ManageOrders ;
 
 
 
