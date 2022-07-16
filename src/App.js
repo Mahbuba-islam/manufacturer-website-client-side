@@ -30,6 +30,7 @@ import AddProduct from './Pages/Dashboard/AddProduct';
 import Payment from './Pages/Dashboard/Payment';
 import AddReview from './Pages/Dashboard/AddReview';
 import ManageOrders from './Pages/Dashboard/ManageOrders';
+import ManageProducts from './Pages/Dashboard/ManageProducts';
 
 
 
@@ -55,6 +56,7 @@ function App() {
           <Route path="myProfile" element={<MyProfile></MyProfile>}></Route>
           <Route path="addProduct" element={<AddProduct></AddProduct>}></Route>
           <Route path="manageOrders" element={<ManageOrders></ManageOrders>}></Route>
+          <Route path="manageProducts" element={<ManageProducts></ManageProducts>}></Route>
         
                 {/* //admin route */}
           <Route path="users" element={<RequireAdmin><Users></Users></RequireAdmin>}></Route>
