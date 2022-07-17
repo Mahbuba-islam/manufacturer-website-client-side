@@ -11,7 +11,7 @@ const Navbar = () => {
    
     const logout = () => {
         signOut(auth);
-       
+       localStorage.removeItem('accessToken')
     };
 
     const dropdownMenu = <>
@@ -27,7 +27,7 @@ const Navbar = () => {
      {    user ?
                             
 
-                            <Link as={Link} to="Profile" className='bg-primary shadow-lg py-2 rounded-full font-semibold ml-14   text-white text-center ' style={{ textAlign:"center" , width: '38px', height: '39px'}}>
+                            <Link as={Link} to="dashboard/MyProfile" className='bg-primary shadow-lg py-2 rounded-full font-semibold ml-14   text-white text-center ' style={{ textAlign:"center" , width: '38px', height: '39px'}}>
                               {user.displayName?.slice(0,1).toUpperCase()}
                             </Link>
                                         
