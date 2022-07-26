@@ -16,7 +16,11 @@ const MakeAdmin = ()=>{
     })
  },[])
  
-    return(
+  const handleAdmin=()=>{
+
+  }
+ 
+ return(
        
         <div className='mt-12 '>
    <h2 className='text-center text-3xl text-error font-bold pb-5'>
@@ -31,8 +35,7 @@ const MakeAdmin = ()=>{
       <th>Name</th>
      <th>email</th>
      <th></th>
-     <th>Price</th>
-      <th>update</th>
+     <th>update</th>
     </tr>
   </thead>
   <tbody>
@@ -42,7 +45,7 @@ const MakeAdmin = ()=>{
         <td>{index+1}</td>
         <td>{user.name}</td>
         <td>{user.email}</td>
-     {/* <td><button onClick={() => handleAdmin(product._id)}>Make admin</button></td> */}
+     <td className=' text-primary'><button onClick={() => handleAdmin}>Make admin</button></td>
       </tr>)
     }   
    
