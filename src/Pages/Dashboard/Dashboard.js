@@ -19,25 +19,28 @@ const Dashboard = () => {
                 <label for="dashboard-sidebar" class="drawer-overlay"></label>
                 <ul class="menu p-4 overflow-y-auto w-30 px-5 bg-base-100 text-base-content">
                     {/* <!-- Sidebar content here --> */}
-                    <li>
-                        <Link to="/dashboard" >My Orders</Link></li>
-                    <li>
-                    <Link to="/dashboard/addReview">Add Reviews</Link>
-                    </li>
+                    {
+                        !admin && <>
+                            <Link to="/dashboard" >My Orders</Link>
+                        <Link to="/dashboard/addReview">Add Reviews</Link>
+                           </>
+                       
+                    
+                    }
+                   
+                    
                     <li><Link to="/dashboard/myProfile">My Profile</Link>
                     </li>
                     
-                    <Link to="/dashboard/addProduct">Add Product</Link>
-                    <Link to="/dashboard/manageOrders">Manage orders</Link>
-                    <Link to="/dashboard/manageProducts">Manage Products</Link>
-                    <Link to="/dashboard/makeAdmin">Make Admin</Link>
-
                     
                     { admin && <>
                     {/* <Link to="/dashboard/users" className='py-2 my-4 text-primary px-2 shadow-lg mr-6 text-center text-1xl font-bold'>Make Admin</Link> */}
-
-                    <Link to="/dashboard/myProfile">My Profile</Link>
-
+                    <Link to="/dashboard/users">All Users</Link>
+                    <Link to="/dashboard/addProduct">Add Product</Link>
+                    <Link to="/dashboard/manageProducts">Manage Products</Link>
+                    <Link to="/dashboard/manageOrders">Manage orders</Link>
+                    
+                   
                    
                     
                     {/* <Link to="/dashboard/addProduct">Add Product</Link> */}
