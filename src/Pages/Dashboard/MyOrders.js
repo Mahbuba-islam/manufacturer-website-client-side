@@ -73,6 +73,7 @@ const handleDelete = id =>{
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Address</th>
+                            <th>productName</th>
                             <th>price</th>
                             <th>Payment</th>
                             <th>Delete</th>
@@ -86,6 +87,7 @@ const handleDelete = id =>{
                                 <td>{order.customerEmail}</td>
                                 <td>{order.phone}</td>
                                 <td>{order.address}</td>
+                                <td>{order.productName}</td>
                                  <td>{order.price}</td>
                                
                                 <td>

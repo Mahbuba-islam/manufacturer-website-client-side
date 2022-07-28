@@ -43,7 +43,7 @@ const Purchase = () => {
   event.preventDefault();
   const orders = {
       orderId:purchase._id,
-      orderName:purchase.name,
+      productName:purchase.name,
        orderQuantity:event.target.quantity.value,
       customerName:user.displayName,
       customerEmail:user.email,
@@ -150,8 +150,9 @@ const decreaseQuantity = () =>{
           <input type="text" disabled value={user?.email} class="input w-full max-w-xs " />
           <input type="text" placeholder='ADDRESS' name='address'  class="input w-full max-w-xs " />
          <input type="number" placeholder='PHONE NUMBER' name='phone' class="input w-full max-w-xs " />
+         <input type="text" placeholder="product-name"  value={purchase.name} name='quantity' class="input w-full max-w-xs" />
           <input type="text" placeholder="price"  value={purchase.price} name='quantity' class="input w-full max-w-xs" />
-          <input type="text" placeholder="price"  value={purchase.availavailQuantity} name='quantity' class="input w-full max-w-xs" />
+          <input type="text" placeholder="quantity"  value={purchase.availavailQuantity} name='quantity' class="input w-full max-w-xs" />
           <input type="submit" value='complete the order' class="btn btn-secondary"/>
       </form>
     
