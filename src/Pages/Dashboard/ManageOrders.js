@@ -65,7 +65,7 @@ const handleDelete = id =>{
                         {
                             orders.map((order, index) =><tr>
                                 <th>{index + 1}</th>
-                                <td>name:{order.customerName}</td>
+                                <td>{order.customerName}</td>
                                 <td>{order.customerEmail}</td>
                                 <td>{order.phone}</td>
                                 <td>{order.address}</td>

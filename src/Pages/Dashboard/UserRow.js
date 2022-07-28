@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { toast } from 'react-toastify';
-import Users from './Users';
 import Loading from '../Shared/Loading';
 
-const UserRow = ({ user, setUser, isLoading, refetch  }) => {
-   const { email, role } = user;
+const UserRow = ({ user, setDeletingUser, isLoading, refetch , index }) => {
+   const { email, role} = user;
+  
+   if (isLoading) {
+    return <Loading></Loading>
+}
     const makeAdmin = () => {
         fetch(`http://localhost:5000/users/admin/${email}`, {
             method: 'PUT',
@@ -28,38 +31,16 @@ const UserRow = ({ user, setUser, isLoading, refetch  }) => {
     }
 
     
-
-
-   const removeUser = id =>{
-    const proceed = toast.warn(<div><h4>Are You Sure! </h4> <strong> You really want to remove your product?</strong>
-    </div>);
-      if(proceed){
-          const url = `http://localhost:5000/users/${id}`;
-          fetch(url, {
-              method: 'DELETE'
-          })
-          .then(res => res.json())
-          .then(data => {
-              if(data.deletedCount > 0){
-               
-                  const remaining = user.filter(user => user._id !== id);
-                 
-                  setUser(remaining);
-                  if (isLoading) {
-                    return <Loading></Loading>
-                }
-              }
-        })
-    }
-}
     
 
     return (
         <tr>
-            <th>1</th>
-            <td>{email}</td>
+             <th>{index+1}</th>
+              <td>{email}</td>
             <td>{role !== 'admin' ? <button onClick={makeAdmin} class="btn btn-xs">Make Admin</button> : <button class="btn btn-xs">Admin</button>}</td>
-            <td><button onClick={()=>removeUser(user._id)} class="btn btn-xs">Remove User</button></td>
+            <label onClick={()=> setDeletingUser(user)} for="delete-confirm-model" class="btn modal-button">Remove User</label>
+
+           
         </tr>
     );
 };
