@@ -89,7 +89,7 @@ const handleDelete = id =>{
                                  <td>{order.price}</td>
                                
                                 <td>
-                                {(order.price && !order.paid) && <Link to={`/dashboard/payment/$(_id)`}><button className='btn btn-xs btn-success text-white px-5 text-center'>pay</button></Link>}
+                                {(order.price && !order.paid) && <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-xs btn-success text-white px-5 text-center'>pay</button></Link>}
                                     {(order.price && order.paid) && <div>
                                         <p><span className='text-success'>Paid</span></p>
                                         
