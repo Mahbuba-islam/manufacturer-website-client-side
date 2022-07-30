@@ -1,11 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
+import { success } from 'daisyui/src/colors';
 
 
 
-const CheckoutForm = () => {
+const CheckoutForm = ({order}) => {
     const stripe = useStripe();
     const elements = useElements();
+    const [cardError, setCardError] = useState('')
+    const [clientSecret, setClientSecret] = useState('')
+    const [success, setSuccess] = useState('')
+    const {price, customerName, customerEmail, orderName, orderQuantity} = order;
+
+    console.log(clientSecret)
+
+    useEffect(()=>{
+      fetch('http://localhost:5000/create-payment-intent',{
+        method:'POST',
+        headers:{
+          'content-type': 'application/json',
+          'authorization':`Bearer ${localStorage.getItem('accessToken')}`
+      },
+      body: JSON.stringify({price})
+      })
+      .then(res=>res.json())
+      .then(data => {
+        console.log(data)
+        if(data?.clientSecret){
+          setClientSecret(data.clientSecret)
+        }
+      }
+       )
+
+    },[price])
 
     const handleSubmit = async (event) => {
         // Block native form submission.
@@ -15,12 +42,49 @@ const CheckoutForm = () => {
             // form submission until Stripe.js has loaded.
             return;
           }
+        
           const card = elements.getElement(CardElement);
           if (card == null) {
             return;
           }
-        }
+        
+      
 
+
+      const {error, paymentMethod} = await stripe.createPaymentMethod({
+        type: 'card',
+        card,
+      });
+  
+     
+        setCardError( error?.message || '');
+        setSuccess('')
+
+    // confirm card payment
+    const {paymentIntent, error:intentError} = await stripe.confirmCardPayment(
+      clientSecret,
+      {
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: customerName,
+            email: customerEmail,
+            
+          },
+        },
+      },
+    );
+
+    if(intentError){
+      setCardError(intentError?.message)
+      
+    }
+    else{
+      setCardError('')
+      console.log(paymentIntent)
+      setSuccess('congragats! your payment is successfully completed')
+    }
+  }
     return(
         <div>
         <form onSubmit={handleSubmit}>
@@ -40,12 +104,19 @@ const CheckoutForm = () => {
           },
         }}
       />
-      <button className='btn btn-success btn-xs mt-4' type="submit" disabled={!stripe}>
+      <button className='btn btn-success btn-xs mt-4' type="submit" disabled={!stripe || !clientSecret}>
         Pay
       </button>
     </form>
    
+{
+  cardError && <p className='text-danger'>{cardError}</p>
+  
+}
 
+{
+  success && <p className='text-primary'>{success}</p>
+}
         </div>
     )
    

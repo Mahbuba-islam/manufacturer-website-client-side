@@ -1,6 +1,6 @@
 [
     {
-      "_id":1,
+      
       "price": "$2,816.74",
       "picture": "https://i.ibb.co/sK5q42j/pexels-pixabay-163073-1.jpg",
       "minimumQuantity": 7,
@@ -9,7 +9,7 @@
       "description": "Lightning M.2: Running at PCIe Gen4 x4 maximizes performance for NVMe based SSDs"
     },
     {
-      "_id":2,
+      
       "price": "$3,002.57",
       "picture": "https://i.ibb.co/hmqpfqJ/pexels-alessandro-oliverio-1472443-2.jpg",
       "minimumQuantity": 10,
@@ -18,7 +18,7 @@
       "description": "Manufacturer warranty until 2023, ships in a secure pressure-rated box"
     },
     {
-      "_id":3,
+      
       "price": "$2,445.19",
       "picture": "https://i.ibb.co/sK5q42j/pexels-pixabay-163073-1.jpg",
       "minimumQuantity": 30,
