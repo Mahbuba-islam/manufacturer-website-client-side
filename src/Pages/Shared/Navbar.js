@@ -1,19 +1,22 @@
 import { signOut } from 'firebase/auth';
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 import logo from '../../assets/icons/logo4.png'
+import Loading from './Loading';
 
 const Navbar = () => {
 
     const [user] = useAuthState(auth);
-   
+   const[isLoading] = useState()
     const logout = () => {
         signOut(auth);
        localStorage.removeItem('accessToken')
     };
-
+if(isLoading){
+   return <Loading></Loading>
+}
     const dropdownMenu = <>
         <li><Link to='/'><img src={logo} class= 'h-1200 ' alt="logo" /></Link></li>
         <li><Link to="/">Home</Link></li>
@@ -24,15 +27,14 @@ const Navbar = () => {
             user && <li><Link to="/dashboard">Dashboard</Link></li>
         }
      
-     {    user ?
+     {    user &&
                             
 
-                            <Link as={Link} to="dashboard/MyProfile" className='bg-primary shadow-lg py-2 rounded-full font-semibold ml-14   text-white text-center ' style={{ textAlign:"center" , width: '38px', height: '39px'}}>
-                              {user.displayName?.slice(0,1).toUpperCase()}
-                            </Link>
+                           <Link as={Link} to="dashboard/MyProfile" className='bg-primary shadow-lg py-2 rounded-full font-semibold ml-14   text-white text-center ' style={{ textAlign:"center" , width: '38px', height: '39px'}}>
+                           {user.displayName?.slice(0,1).toUpperCase()}
+                         </Link>
                                         
-                                  :
-                                        <div></div>}
+                                 }
                                              
 
         <li >{user ? <button className="btn btn-link" onClick={logout} >Sign Out</button> : <Link to="/login">Login</Link>}</li>
