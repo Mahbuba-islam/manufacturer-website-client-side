@@ -4,9 +4,11 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link} from 'react-router-dom';
 import { toast } from 'react-toastify';
  import auth from '../../firebase.init';
+ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
-// import { useNavigate } from 'react-router-dom';
-// import { signOut } from 'firebase/auth';
+
+
 
 
 const ManageOrders = () => {
@@ -47,11 +49,10 @@ const handleDelete = id =>{
     return (
         <div className='mt-12 '>
             <h2 className='text-center text-3xl text-error font-bold pb-5'>Total Orders: {orders.length}</h2>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
-                            <th></th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
@@ -63,22 +64,23 @@ const handleDelete = id =>{
                     </thead>
                     <tbody>
                         {
-                            orders.map((order, index) =><tr>
-                                <th>{index + 1}</th>
-                                <td>{order.customerName}</td>
+                            orders.map((order) =><tr>
+                             <td>{order.customerName}</td>
                                 <td>{order.customerEmail}</td>
                                 <td>{order.phone}</td>
                                 <td>{order.address}</td>
                                  <td>{order.price}</td>
+                                
                                
                                 <td>
-                                {(order.price && !order.paid) && <Link to={`/dashboard/payment/$(_id)`}><button className='btn btn-xs btn-success text-white px-5 text-center'>pay</button></Link>}
+                                {(order.price && !order.paid) && <Link to={`/dashboard/payment/$(_id)`}><button className='btn btn-xs btn-success text-white px-5 text-center'>notPaid</button></Link>}
                                     {(order.price && order.paid) && <div>
                                         <p><span className='text-success'>Paid</span></p>
+                                       
                                         
                                     </div>}
                                 </td>
-                                <td><button onClick={() => handleDelete(order._id)}>X</button></td>
+                                <td><button onClick={() => handleDelete(order._id)} className='btn btn-sm btn-error'><FontAwesomeIcon icon = {faTrashCan} /></button></td>
                             </tr>)
 
                 }

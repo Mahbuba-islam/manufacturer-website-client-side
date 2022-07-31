@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
-import { success } from 'daisyui/src/colors';
+
 
 
 
@@ -10,7 +10,7 @@ const CheckoutForm = ({order}) => {
     const [cardError, setCardError] = useState('')
     const [clientSecret, setClientSecret] = useState('')
     const [success, setSuccess] = useState('')
-    const {price, customerName, customerEmail, orderName, orderQuantity} = order;
+    const {price, customerName, customerEmail} = order;
 
     console.log(clientSecret)
 
@@ -117,6 +117,7 @@ const CheckoutForm = ({order}) => {
 {
   success && <p className='text-primary'>{success}</p>
 }
+
         </div>
     )
    

@@ -20,8 +20,8 @@ const Users = () => {
     return (
         <div className='py-2 mt-5'>
             <h2 className="text-5xl text-center text-error py-5">All Users: {users.length}</h2>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>

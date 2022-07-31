@@ -1,6 +1,8 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 import Loading from '../Shared/Loading';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 const UserRow = ({ user, setDeletingUser, isLoading, refetch , index }) => {
    const { email, role} = user;
@@ -38,7 +40,7 @@ const UserRow = ({ user, setDeletingUser, isLoading, refetch , index }) => {
              <th>{index+1}</th>
               <td>{email}</td>
             <td>{role !== 'admin' ? <button onClick={makeAdmin} class="btn btn-xs">Make Admin</button> : <button class="btn btn-xs">Admin</button>}</td>
-            <label onClick={()=> setDeletingUser(user)} for="delete-confirm-model" class="btn modal-button">Remove User</label>
+            <label onClick={()=> setDeletingUser(user)} for="delete-confirm-model" class="btn modal-button btn-error "><FontAwesomeIcon icon = {faTrashCan} /></label>
 
            
         </tr>

@@ -6,12 +6,11 @@ import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
-// import { signOut } from 'firebase/auth';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-const MyOrders = () => {
-   
-    
+const MyOrders = ({success}) => {
   const [orders, setOrders] = useState([]);
   const [user] = useAuthState(auth);
   const email = user.email
@@ -64,8 +63,8 @@ const handleDelete = id =>{
     return (
         <div className='mt-12 '>
             <h2 className='text-center text-3xl text-error font-bold pb-5'>Total Orders: {orders.length}</h2>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>
@@ -81,7 +80,10 @@ const handleDelete = id =>{
                     </thead>
                     <tbody>
                         {
-                            orders.map((order, index) =><tr>
+                            orders.map((order, index) =>  
+                           
+                           <tr  key={order._id}>
+                               
                                 <th>{index + 1}</th>
                                 <td>{order.customerName}</td>
                                 <td>{order.customerEmail}</td>
@@ -97,7 +99,7 @@ const handleDelete = id =>{
                                         
                                     </div>}
                                 </td>
-                                <td><button onClick={() => handleDelete(order._id)}>X</button></td>
+                                <td><button onClick={() => handleDelete(order._id)} className='btn btn-sm btn-error'><FontAwesomeIcon icon = {faTrashCan} /></button></td>
                             </tr>)
 
                 }
